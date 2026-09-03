@@ -106,11 +106,8 @@ public partial class HudWindow : Window, INotifyPropertyChanged
     {
         Dispatcher.Invoke(() =>
         {
-            // Update text in speed mode
-            if (_viewMode == HudViewMode.Speed)
-            {
-                UpdateSpeedText();
-            }
+            // Speed text is always visible in both Speed and Graph modes
+            UpdateSpeedText();
 
             // Push history for graph mode
             _downloadHistory.Enqueue(speed.downBps);
@@ -143,6 +140,8 @@ public partial class HudWindow : Window, INotifyPropertyChanged
             GraphView.Visibility = _viewMode == HudViewMode.Graph ? Visibility.Visible : Visibility.Collapsed;
             if (_viewMode == HudViewMode.Graph) DrawGraph();
         }
+
+        UpdateSpeedText();
     }
 
     private void DrawGraph()
@@ -150,8 +149,8 @@ public partial class HudWindow : Window, INotifyPropertyChanged
         if (GraphView == null || DownloadGraph == null || UploadGraph == null) return;
         if (_downloadHistory.Count < 2) return;
 
-        double w = GraphView.ActualWidth;
-        double h = GraphView.ActualHeight;
+        double w = GraphView.ActualWidth > 0 ? GraphView.ActualWidth : GraphView.Width;
+        double h = GraphView.ActualHeight > 0 ? GraphView.ActualHeight : GraphView.Height;
         if (w <= 0 || h <= 0) return;
 
         // Find max for scaling
