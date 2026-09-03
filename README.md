@@ -54,6 +54,17 @@ NetTrafficMonitor.sln
 
 ---
 
+## Download
+
+Grab the latest build from the [Releases](https://github.com/rahul-mitra/NetTrafficMonitor/releases) page. No installer, nothing to configure:
+
+- **`NetTrafficMonitor-x.y.z-win-x64.zip`** — self-contained. Unzip anywhere and run `NetTrafficMonitor.exe`. Works on any 64-bit Windows 10/11 PC with nothing else installed. Larger download because .NET is bundled.
+- **`NetTrafficMonitor-x.y.z-win-x64-framework-dependent.zip`** — small download; needs the [.NET 9 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/9.0) installed first.
+
+Windows may show a SmartScreen warning the first time because the executable is not code-signed; choose *More info → Run anyway*. The app starts in the system tray; right-click the tray icon to open settings.
+
+---
+
 ## Getting started
 
 ### Prerequisites
